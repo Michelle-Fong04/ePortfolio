@@ -30,7 +30,7 @@ if (!container) {
         container.innerHTML += data;
         
         // Initialize animations after section is added
-        if(section==='home') setTimeout(() => initHomeAnimations(), 500);
+        if(section==='home') setTimeout(() => initHomeAnimations(), 100);
         if(section==='footer') setTimeout(() => initQuizModal(), 100);
         
         sectionIndex++;
@@ -48,33 +48,25 @@ if (!container) {
 
 // ================= Home Section Animations =================
 function initHomeAnimations(){
-  console.log('initHomeAnimations called');
-  
-  // Typed.js animation with retry logic
+  // Typed.js animation
   const typedElement = document.getElementById('typed');
   if (!typedElement) {
     console.error('ERROR: #typed element not found!');
     return;
   }
 
-  // Check if Typed library is loaded, with retry
+  // Check if Typed library is loaded
   if (typeof Typed === 'undefined') {
-    console.warn('Typed.js not loaded yet, retrying...');
-    setTimeout(() => initHomeAnimations(), 500);
+    console.error('ERROR: Typed.js library not loaded!');
     return;
   }
 
-  try {
-    new Typed('#typed', {
-      strings: ["Engineer", "Table Tennis Coach", "Problem Solver", "Lifelong Learner"],
-      typeSpeed: 80,
-      backSpeed: 50,
-      loop: true
-    });
-    console.log('✓ Typed.js animation initialized');
-  } catch(e) {
-    console.error('ERROR initializing Typed.js:', e);
-  }
+  new Typed('#typed', {
+    strings: ["Engineer", "Table Tennis Coach", "Problem Solver", "Lifelong Learner"],
+    typeSpeed: 80,
+    backSpeed: 50,
+    loop: true
+  });
 
   // Profile photo slider
   const profilePhoto = document.getElementById('profilePhoto');
@@ -83,17 +75,11 @@ function initHomeAnimations(){
     return;
   }
 
-  const photos = ['images/profile.jpg', 'images/profile_cartoon.png'];
+  const photos = ['images/profile.jpg', 'images/profile_cartoon.jpg'];
   let currentIndex = 0;
-  
-  const photoInterval = setInterval(()=>{
-    if (profilePhoto && profilePhoto.parentElement) {
-      currentIndex = (currentIndex + 1) % photos.length;
-      profilePhoto.src = photos[currentIndex];
-      console.log('Profile photo updated to:', photos[currentIndex]);
-    } else {
-      clearInterval(photoInterval);
-    }
+  setInterval(()=>{
+    currentIndex = (currentIndex + 1) % photos.length;
+    profilePhoto.src = photos[currentIndex];
   }, 3000);
 
   console.log('✓ Home animations initialized successfully');

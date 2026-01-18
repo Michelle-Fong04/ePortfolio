@@ -274,6 +274,130 @@ nav ul li a:hover {
   transform: scale(1.1);
 }
 
+/* Quiz Button */
+.quiz-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #fff;
+  color: #009688;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.quiz-btn:hover {
+  background: #009688;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 500px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content h2 {
+  color: #009688;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.modal-content p {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-option {
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  background: #f9f9f9;
+  font-size: 0.95rem;
+}
+
+.modal-option:hover {
+  border-color: #009688;
+  background: #e0f7f7;
+}
+
+.modal-option.selected {
+  border-color: #009688;
+  background: #009688;
+  color: #fff;
+}
+
+.close-modal {
+  color: #333;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close-modal:hover {
+  color: #009688;
+}
+
+.modal-btn {
+  width: 100%;
+  padding: 12px;
+  background: #009688;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal-btn:hover {
+  background: #00796b;
+  transform: translateY(-2px);
+}
+
 /* ===== PERSONAL REFLECTION ===== */
 #reflection {
   background: #e0f7f7;
@@ -389,4 +513,122 @@ nav ul li a:hover {
   .home-image {
     margin-top: 30px;
   }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .modal-content {
+    margin: 30% auto;
+    max-width: 90%;
+  }
+}
+
+/* ===== FOOTER ===== */
+#footer {
+  background: #00796b;
+  color: #fff;
+  padding-top: 50px;
+  margin-top: 80px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  gap: 30px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-section h3 {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.footer-section p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #e0f7f7;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+  color: #e0f7f7;
+  transition: 0.3s;
+  font-size: 0.95rem;
+}
+
+.footer-section ul li a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  color: #fff;
+  transition: 0.3s;
+  font-size: 0.9rem;
+}
+
+.social-links a:hover {
+  background: #fff;
+  color: #00796b;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  background: #006b5f;
+  font-size: 0.9rem;
+  color: #e0f7f7;
+}
+
+.back-to-top {
+  padding: 10px 20px;
+  background: #fff;
+  color: #00796b;
+  border: none;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  display: none;
+}
+
+.back-to-top.show {
+  display: block;
+}
+
+.back-to-top:hover {
+  background: #e0f7f7;
+  transform: translateY(-2px);
 }

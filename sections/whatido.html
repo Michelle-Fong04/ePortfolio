@@ -14,6 +14,7 @@
           <div class="flip-card-back">
             <p>Understanding syntax, data types, and control structures helps write correct and readable code. Mastering the basics is essential to implement ideas properly.</p>
             <img src="images/code_snippet.jpg" alt="Code example" class="back-image">
+            <button class="quiz-btn" data-card="cpp">🎯 Quiz</button>
           </div>
         </div>
       </div>
@@ -28,6 +29,7 @@
           <div class="flip-card-back">
             <p>Logic allows us to think step by step, break problems into smaller parts, and design solutions before coding. Strong logic reduces errors and debugging time.</p>
             <img src="images/brain_icon.jpg" alt="Brain thinking" class="back-image">
+            <button class="quiz-btn" data-card="logic">🎯 Quiz</button>
           </div>
         </div>
       </div>
@@ -42,6 +44,7 @@
           <div class="flip-card-back">
             <p>Applying suitable data structures and algorithms improves efficiency and performance, especially when solving real programming problems.</p>
             <img src="images/flowchart.jpg" alt="Flowchart" class="back-image">
+            <button class="quiz-btn" data-card="dsa">🎯 Quiz</button>
           </div>
         </div>
       </div>
@@ -49,3 +52,14 @@
     </div>
   </div>
 </section>
+
+<!-- Modal for Quiz/Code Snippets -->
+<div id="quizModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2 id="modalTitle">C++ Basics Quiz</h2>
+    <p id="modalBody">What does the 'int' keyword declare?</p>
+    <div id="modalOptions" class="modal-options"></div>
+    <button id="submitAnswerBtn" class="modal-btn">Submit Answer</button>
+  </div>
+</div>

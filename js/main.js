@@ -48,25 +48,33 @@ if (!container) {
 
 // ================= Home Section Animations =================
 function initHomeAnimations(){
-  // Typed.js animation
+  console.log('initHomeAnimations called');
+  
+  // Typed.js animation with retry logic
   const typedElement = document.getElementById('typed');
   if (!typedElement) {
     console.error('ERROR: #typed element not found!');
     return;
   }
 
-  // Check if Typed library is loaded
+  // Check if Typed library is loaded, with retry
   if (typeof Typed === 'undefined') {
-    console.error('ERROR: Typed.js library not loaded!');
+    console.warn('Typed.js not loaded yet, retrying...');
+    setTimeout(() => initHomeAnimations(), 500);
     return;
   }
 
-  new Typed('#typed', {
-    strings: ["Engineer", "Table Tennis Coach", "Problem Solver", "Lifelong Learner"],
-    typeSpeed: 80,
-    backSpeed: 50,
-    loop: true
-  });
+  try {
+    new Typed('#typed', {
+      strings: ["Engineer", "Table Tennis Coach", "Problem Solver", "Lifelong Learner"],
+      typeSpeed: 80,
+      backSpeed: 50,
+      loop: true
+    });
+    console.log('✓ Typed.js animation initialized');
+  } catch(e) {
+    console.error('ERROR initializing Typed.js:', e);
+  }
 
   // Profile photo slider
   const profilePhoto = document.getElementById('profilePhoto');
@@ -75,11 +83,17 @@ function initHomeAnimations(){
     return;
   }
 
-  const photos = ['images/profile.jpg', 'images/profile_cartoon.jpg'];
+  const photos = ['images/profile.jpg', 'images/profile_cartoon.png'];
   let currentIndex = 0;
-  setInterval(()=>{
-    currentIndex = (currentIndex + 1) % photos.length;
-    profilePhoto.src = photos[currentIndex];
+  
+  const photoInterval = setInterval(()=>{
+    if (profilePhoto && profilePhoto.parentElement) {
+      currentIndex = (currentIndex + 1) % photos.length;
+      profilePhoto.src = photos[currentIndex];
+      console.log('Profile photo updated to:', photos[currentIndex]);
+    } else {
+      clearInterval(photoInterval);
+    }
   }, 3000);
 
   console.log('✓ Home animations initialized successfully');

@@ -191,42 +191,42 @@ nav ul li a:hover {
 }
 
 .floating-circles .circle:nth-child(1){
-  width: 100px;
-  height: 100px;
-  top: 10%;
-  left: 15%;
+  width: 180px;
+  height: 180px;
+  top: 8%;
+  left: 45%;
   animation-duration: 15s;
 }
 
 .floating-circles .circle:nth-child(2){
-  width: 150px;
-  height: 150px;
-  top: 20%;
-  left: 60%;
+  width: 220px;
+  height: 220px;
+  top: 18%;
+  left: 70%;
   animation-duration: 18s;
 }
 
 .floating-circles .circle:nth-child(3){
-  width: 80px;
-  height: 80px;
-  top: 70%;
-  left: 25%;
+  width: 140px;
+  height: 140px;
+  top: 65%;
+  left: 60%;
   animation-duration: 12s;
 }
 
 .floating-circles .circle:nth-child(4){
-  width: 120px;
-  height: 120px;
-  top: 50%;
-  left: 80%;
+  width: 180px;
+  height: 180px;
+  top: 55%;
+  left: 85%;
   animation-duration: 16s;
 }
 
 .floating-circles .circle:nth-child(5){
-  width: 90px;
-  height: 90px;
-  top: 80%;
-  left: 10%;
+  width: 120px;
+  height: 120px;
+  top: 85%;
+  left: 70%;
   animation-duration: 14s;
 }
 
@@ -292,12 +292,13 @@ nav ul li a:hover {
 
 .flip-card {
   width: 280px;
-  height: 320px;
-  perspective: 1000px;
-  cursor: pointer;
-  animation: cardSlideUp 0.8s ease backwards;
-}
-
+  height: 280px;
+  border-radius: 50%;
+  border: 8px solid #fff;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 15px 40px rgba(0, 150, 136, 0.3);
+  object-fit: cover;
+  object-position: center 20px;
 .flip-card:nth-child(1) { animation-delay: 0.1s; }
 .flip-card:nth-child(2) { animation-delay: 0.2s; }
 .flip-card:nth-child(3) { animation-delay: 0.3s; }

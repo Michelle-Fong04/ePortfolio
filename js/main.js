@@ -31,7 +31,6 @@ if (!container) {
         
         // Initialize animations after section is added
         if(section==='home') setTimeout(() => initHomeAnimations(), 100);
-        if(section==='reflection') setTimeout(() => initAccordion(), 100);
         if(section==='footer') setTimeout(() => initQuizModal(), 100);
         
         sectionIndex++;
@@ -84,19 +83,6 @@ function initHomeAnimations(){
   }, 3000);
 
   console.log('✓ Home animations initialized successfully');
-}
-
-// ================= Accordion for Reflection =================
-function initAccordion(){
-  const accItems = document.querySelectorAll('.accordion-item');
-  accItems.forEach(item => {
-    item.querySelector('.accordion-header').addEventListener('click', ()=>{
-      const content = item.querySelector('.accordion-content');
-      const allContents = document.querySelectorAll('.accordion-content');
-      allContents.forEach(c => { if(c!==content) c.style.display='none'; });
-      content.style.display = content.style.display==='block'?'none':'block';
-    });
-  });
 }
 
 // ================= Quiz Modal Data =================

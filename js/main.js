@@ -1,39 +1,58 @@
-/* Load sections */
-function loadSection(id, file) {
-  fetch(file)
-    .then(res => res.text())
-    .then(data => document.getElementById(id).innerHTML = data);
+// ================= Load Sections Dynamically =================
+const sections = ['home', 'whatido', 'reflection', 'notes'];
+const container = document.getElementById('sections-container');
+
+if (!container) {
+  console.error('ERROR: #sections-container not found in HTML!');
+} else {
+  console.log('Loading sections...');
+  sections.forEach(section => {
+    console.log(`Fetching: sections/${section}.html`);
+    fetch(`sections/${section}.html`)
+      .then(res => {
+        console.log(`Response for ${section}.html:`, res.status);
+        if (!res.ok) throw new Error(`Failed to load ${section}.html: ${res.status}`);
+        return res.text();
+      })
+      .then(data => {
+        console.log(`Successfully loaded ${section}.html`);
+        container.innerHTML += data;
+        if(section==='home') initHomeAnimations();
+        if(section==='reflection') initAccordion();
+      })
+      .catch(error => console.error(`Error loading section ${section}:`, error));
+  });
 }
 
-loadSection("home", "sections/home.html");
-loadSection("whatido", "sections/whatido.html");
-loadSection("reflection", "sections/reflection.html");
-loadSection("notes", "sections/notes.html");
-
-/* Typed animation */
-document.addEventListener("DOMContentLoaded", () => {
+// ================= Home Section Animations =================
+function initHomeAnimations(){
+  // Typed.js animation
   new Typed('#typed', {
     strings: ["Engineer", "Table Tennis Coach", "Problem Solver", "Lifelong Learner"],
     typeSpeed: 80,
     backSpeed: 50,
     loop: true
   });
-});
 
-/* Profile photo slider */
-setInterval(() => {
-  const img = document.getElementById("profilePhoto");
-  if (!img) return;
-  img.src = img.src.includes("profile.jpg")
-    ? "images/profile_cartoon.jpg"
-    : "images/profile.jpg";
-}, 3000);
+  // Profile photo slider
+  const profilePhoto = document.getElementById('profilePhoto');
+  const photos = ['images/profile.jpg', 'images/profile_cartoon.jpg'];
+  let currentIndex = 0;
+  setInterval(()=>{
+    currentIndex = (currentIndex + 1) % photos.length;
+    profilePhoto.src = photos[currentIndex];
+  }, 3000);
+}
 
-/* Accordion */
-document.addEventListener("click", e => {
-  if (e.target.classList.contains("accordion-header")) {
-    const content = e.target.nextElementSibling;
-    content.style.display =
-      content.style.display === "block" ? "none" : "block";
-  }
-});
+// ================= Accordion for Reflection =================
+function initAccordion(){
+  const accItems = document.querySelectorAll('.accordion-item');
+  accItems.forEach(item => {
+    item.querySelector('.accordion-header').addEventListener('click', ()=>{
+      const content = item.querySelector('.accordion-content');
+      const allContents = document.querySelectorAll('.accordion-content');
+      allContents.forEach(c => { if(c!==content) c.style.display='none'; });
+      content.style.display = content.style.display==='block'?'none':'block';
+    });
+  });
+}

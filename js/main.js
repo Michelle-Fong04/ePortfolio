@@ -83,7 +83,7 @@ function initHomeAnimations(){
     return;
   }
 
-  const photos = ['images/profile.jpg', 'images/profile_cartoon.jpg'];
+  const photos = ['images/profile.jpg', 'images/profile_cartoon.png'];
   let currentIndex = 0;
   
   const photoInterval = setInterval(()=>{

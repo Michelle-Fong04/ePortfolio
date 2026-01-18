@@ -17,8 +17,8 @@ if (!container) {
       .then(data => {
         console.log(`Successfully loaded ${section}.html`);
         container.innerHTML += data;
-        if(section==='home') initHomeAnimations();
-        if(section==='reflection') initAccordion();
+        if(section==='home') setTimeout(() => initHomeAnimations(), 100);
+        if(section==='reflection') setTimeout(() => initAccordion(), 100);
       })
       .catch(error => console.error(`Error loading section ${section}:`, error));
   });
@@ -27,6 +27,18 @@ if (!container) {
 // ================= Home Section Animations =================
 function initHomeAnimations(){
   // Typed.js animation
+  const typedElement = document.getElementById('typed');
+  if (!typedElement) {
+    console.error('ERROR: #typed element not found!');
+    return;
+  }
+
+  // Check if Typed library is loaded
+  if (typeof Typed === 'undefined') {
+    console.error('ERROR: Typed.js library not loaded!');
+    return;
+  }
+
   new Typed('#typed', {
     strings: ["Engineer", "Table Tennis Coach", "Problem Solver", "Lifelong Learner"],
     typeSpeed: 80,
@@ -36,12 +48,19 @@ function initHomeAnimations(){
 
   // Profile photo slider
   const profilePhoto = document.getElementById('profilePhoto');
+  if (!profilePhoto) {
+    console.error('ERROR: #profilePhoto element not found!');
+    return;
+  }
+
   const photos = ['images/profile.jpg', 'images/profile_cartoon.jpg'];
   let currentIndex = 0;
   setInterval(()=>{
     currentIndex = (currentIndex + 1) % photos.length;
     profilePhoto.src = photos[currentIndex];
   }, 3000);
+
+  console.log('✓ Home animations initialized successfully');
 }
 
 // ================= Accordion for Reflection =================

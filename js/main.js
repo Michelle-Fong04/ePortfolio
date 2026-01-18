@@ -5,9 +5,20 @@ const container = document.getElementById('sections-container');
 if (!container) {
   console.error('ERROR: #sections-container not found in HTML!');
 } else {
-  console.log('Loading sections...');
-  sections.forEach(section => {
+  console.log('Loading sections in order...');
+  
+  // Load sections sequentially (in order)
+  let sectionIndex = 0;
+  
+  function loadNextSection() {
+    if (sectionIndex >= sections.length) {
+      console.log('✓ All sections loaded');
+      return;
+    }
+    
+    const section = sections[sectionIndex];
     console.log(`Fetching: sections/${section}.html`);
+    
     fetch(`sections/${section}.html`)
       .then(res => {
         console.log(`Response for ${section}.html:`, res.status);
@@ -17,11 +28,22 @@ if (!container) {
       .then(data => {
         console.log(`Successfully loaded ${section}.html`);
         container.innerHTML += data;
+        
+        // Initialize animations after section is added
         if(section==='home') setTimeout(() => initHomeAnimations(), 100);
         if(section==='reflection') setTimeout(() => initAccordion(), 100);
+        
+        sectionIndex++;
+        loadNextSection(); // Load next section
       })
-      .catch(error => console.error(`Error loading section ${section}:`, error));
-  });
+      .catch(error => {
+        console.error(`Error loading section ${section}:`, error);
+        sectionIndex++;
+        loadNextSection(); // Skip to next section if error
+      });
+  }
+  
+  loadNextSection(); // Start loading
 }
 
 // ================= Home Section Animations =================

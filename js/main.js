@@ -30,7 +30,7 @@ if (!container) {
         container.innerHTML += data;
         
         // Initialize animations after section is added
-        if(section==='home') setTimeout(() => initHomeAnimations(), 100);
+        if(section==='home') setTimeout(() => initHomeAnimations(), 500);
         if(section==='footer') setTimeout(() => initQuizModal(), 100);
         
         sectionIndex++;
